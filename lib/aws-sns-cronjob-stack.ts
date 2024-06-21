@@ -10,14 +10,14 @@ export class AwsSnsCronjobStack extends cdk.Stack {
     super(scope, id, props);
 
     const rule = new Rule(this, 'rule', {
-      schedule: Schedule.expression('cron(30 18 * * MON-FRI *)')
+      schedule: Schedule.expression('cron(50 21 ? * MON-FRI *)')
     });
 
     const topic = new Topic(this, 'topic', {
       displayName: 'My Topic'
     });
 
-    topic.addSubscription(new EmailSubscription('email'));
+    topic.addSubscription(new EmailSubscription('rudy.alvarado.b@gmail.com'));
 
     rule.addTarget(new SnsTopic(topic));
   }
